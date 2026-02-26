@@ -85,11 +85,13 @@ public class SimpleOrderSystem
     String lastName = in.nextLine();
     System.out.println("Enter address:");
     String address = in.nextLine();
+    System.out.println("Enter postcode:");
+    String postcode = in.nextLine();
     System.out.println("Enter phone number:");
     String phone = in.nextLine();
     System.out.println("Enter email address:");
     String email = in.nextLine();
-    Customer customer = new Customer(firstName,lastName,address,phone,email);
+    Customer customer = new Customer(firstName,lastName,address, postcode, phone, email);
     customers.add(customer);
   }
 
@@ -226,6 +228,7 @@ public class SimpleOrderSystem
                                   + ", "
                                   + customer.getFirstName());
       System.out.println("Address: " + customer.getAddress());
+      System.out.println("Postcode: " + customer.getPostcode());
       System.out.println("Phone: " + customer.getPhone());
       System.out.println("Email: " + customer.getEmail());
       System.out.println("Orders made: " + customer.getOrders().size());
@@ -252,9 +255,9 @@ public class SimpleOrderSystem
     orderSystem.products.add(new Product(2,"Gadget",200));
     orderSystem.products.add(new Product(3,"Thingy",300));
 
-    Customer customer = new Customer("John","Smith","1 Main Street","0123456789", "johnsmith@example.com");
+      Customer customer = new Customer("John","Smith","1 Main Street","SW1A 1AA", "0123456789",  "johnsmith@example.com");
     orderSystem.customers.add(customer);
-    Customer customer2 = new Customer("Jane","Smith","2 Main Street","0123456789", "janesmith@example.com");
+    Customer customer2 = new Customer("Jane","Smith","2 Main Street","SW1A 1AB", "0123456790",  "janesmith@example.com");
     orderSystem.customers.add(customer2);
 
     Order order = new Order();
