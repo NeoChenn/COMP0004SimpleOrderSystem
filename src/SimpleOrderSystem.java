@@ -231,6 +231,26 @@ public class SimpleOrderSystem
   public static void main(String[] args)
   {
     SimpleOrderSystem orderSystem = new SimpleOrderSystem();
+
+    //Example data
+    orderSystem.products.add(new Product(1,"Widget",100));
+    orderSystem.products.add(new Product(2,"Gadget",200));
+    orderSystem.products.add(new Product(3,"Thingy",300));
+
+    Customer customer = new Customer("John","Smith","1 Main Street","0123456789", "johnsmith@example.com");
+    orderSystem.customers.add(customer);
+    Customer customer2 = new Customer("Jane","Smith","2 Main Street","0123456789", "janesmith@example.com");
+    orderSystem.customers.add(customer2);
+
+    Order order = new Order();
+    order.add(new LineItem(2,orderSystem.products.get(0)));
+    customer.addOrder(order);
+
+    Order order2 = new Order();
+    order2.add(new LineItem(1,orderSystem.products.get(1)));
+    order2.add(new LineItem(3,orderSystem.products.get(2)));
+    customer2.addOrder(order2);
+
     orderSystem.run();
   }
 }
