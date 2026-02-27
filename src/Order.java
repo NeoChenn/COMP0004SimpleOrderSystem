@@ -9,6 +9,11 @@ public class Order
     lineItems = new ArrayList<LineItem>();
   }
 
+  public ArrayList<LineItem> getLineItems()
+  {
+    return lineItems;
+  }
+
   public int getLineItemCount()
   {
     return lineItems.size();

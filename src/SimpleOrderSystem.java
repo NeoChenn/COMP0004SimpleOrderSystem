@@ -259,7 +259,35 @@ public class SimpleOrderSystem
     }
   }
 
-
+  private void productOrders()
+  {
+    System.out.print("Enter product code: ");
+    int code = in.nextInt();
+    in.nextLine();
+    Product product = getProduct(code);
+    if (product == null)
+    {
+      System.out.println("Invalid product code");
+      return;
+    }
+    for (Customer customer : customers)
+    {
+      for (Order order : customer.getOrders())
+      {
+        for (LineItem item : order.getLineItems())
+        {
+          if (item.getProduct().getCode() == code)
+          {
+            System.out.println("Order by " + customer.getLastName() + ", " + customer.getFirstName() + " for: ");
+            for (LineItem lineItem : order.getLineItems())
+            {
+              System.out.println(lineItem.getQuantity() + " x " + lineItem.getProduct().getDescription());
+            }
+          }
+        }
+      }
+    }
+  }
 
   private void overallTotal()
   {
@@ -276,9 +304,9 @@ public class SimpleOrderSystem
     SimpleOrderSystem orderSystem = new SimpleOrderSystem();
 
     //Example data
-    orderSystem.products.add(new Book(1,"Title", "Author", "2020-01-01", 100));
-    orderSystem.products.add(new Book(2,"Gadget", "Author", "2020-01-02", 200));
-    orderSystem.products.add(new Electronic(3, "Brand", "Warranty", 100));
+    orderSystem.products.add(new Book(0,"Title", "Author", "2020-01-01", 100));
+    orderSystem.products.add(new Book(1,"Gadget", "Author", "2020-01-02", 200));
+    orderSystem.products.add(new Electronic(2, "Brand", "Warranty", 100));
 
     Customer customer = new Customer("John","Smith","1 Main Street","SW1A 1AA", "0123456789",  "johnsmith@example.com");
     orderSystem.customers.add(customer);
@@ -290,8 +318,8 @@ public class SimpleOrderSystem
     customer.addOrder(order);
 
     Order order2 = new Order();
-    order2.add(new LineItem(1,orderSystem.products.get(1)));
-    order2.add(new LineItem(3,orderSystem.products.get(2)));
+    order2.add(new LineItem(1,orderSystem.products.get(0)));
+    order2.add(new LineItem(2,orderSystem.products.get(2)));
     customer2.addOrder(order2);
 
     orderSystem.run();
