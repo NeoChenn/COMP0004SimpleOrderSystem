@@ -7,6 +7,7 @@ public class SimpleOrderSystem
   public static final int ADD_PRODUCT = 3;
   public static final int LIST_CUSTOMERS = 4;
   public static final int OVERALL_TOTAL = 5;
+  public static final int PRODUCT_ORDERS = 6;
   public static final int QUIT = 10;
   private Input in = new Input();
   private ArrayList<Customer> customers;
@@ -40,6 +41,7 @@ public class SimpleOrderSystem
     System.out.println(ADD_PRODUCT + ". Add Product");
     System.out.println(LIST_CUSTOMERS + ". List Customers");
     System.out.println(OVERALL_TOTAL + ". Overall Total");
+    System.out.println(PRODUCT_ORDERS + ". Product Orders");
     System.out.println();
     System.out.println(QUIT + ". Quit");
   }
@@ -62,6 +64,9 @@ public class SimpleOrderSystem
         break;
       case OVERALL_TOTAL:
         overallTotal();
+        break;
+      case PRODUCT_ORDERS:
+        productOrders();
         break;
       default:
         System.out.println("Invalid option - try again");
@@ -253,6 +258,8 @@ public class SimpleOrderSystem
       System.out.println("Total for all orders: " + customer.getTotalForAllOrders());
     }
   }
+
+
 
   private void overallTotal()
   {
