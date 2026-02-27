@@ -187,6 +187,8 @@ public class SimpleOrderSystem
 
   private void addProduct()
   {
+    System.out.print("Enter product type (1 for Book, 2 for Electronic): ");
+    int type = in.nextInt();    
     System.out.print("Enter product code: ");
     int code = in.nextInt();
     in.nextLine();
@@ -194,12 +196,28 @@ public class SimpleOrderSystem
     {
       return;
     }
-    System.out.print("Enter product description: ");
-    String description = in.nextLine();
     System.out.print("Enter product price: ");
     int price = in.nextInt();
     in.nextLine();
-    Product product = new Product(code,description,price);
+    Product product = null;
+    if (type == 1)
+    {
+      System.out.print("Enter book title: ");
+      String title = in.nextLine();
+      System.out.print("Enter book author: ");
+      String author = in.nextLine();
+      System.out.print("Enter book publication date: ");
+      String date = in.nextLine();
+      product = new Book(code, title, author, date, price);
+    }
+    else if (type == 2)
+    {
+      System.out.print("Enter electronic brand: ");
+      String brand = in.nextLine();
+      System.out.print("Enter electronic warranty: ");
+      String warranty = in.nextLine();
+      product = new Electronic(code, brand, warranty, price);
+    }
     products.add(product);
   }
 
@@ -251,11 +269,11 @@ public class SimpleOrderSystem
     SimpleOrderSystem orderSystem = new SimpleOrderSystem();
 
     //Example data
-    orderSystem.products.add(new Product(1,"Widget",100));
-    orderSystem.products.add(new Product(2,"Gadget",200));
-    orderSystem.products.add(new Product(3,"Thingy",300));
+    orderSystem.products.add(new Book(1,"Title", "Author", "2020-01-01", 100));
+    orderSystem.products.add(new Book(2,"Gadget", "Author", "2020-01-02", 200));
+    orderSystem.products.add(new Electronic(3, "Brand", "Warranty", 100));
 
-      Customer customer = new Customer("John","Smith","1 Main Street","SW1A 1AA", "0123456789",  "johnsmith@example.com");
+    Customer customer = new Customer("John","Smith","1 Main Street","SW1A 1AA", "0123456789",  "johnsmith@example.com");
     orderSystem.customers.add(customer);
     Customer customer2 = new Customer("Jane","Smith","2 Main Street","SW1A 1AB", "0123456790",  "janesmith@example.com");
     orderSystem.customers.add(customer2);
